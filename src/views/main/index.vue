@@ -8,7 +8,9 @@
         <el-header class="page-header">
           <nav-header @fold-change="handleFoldChange" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <router-view />
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -20,12 +22,13 @@ import NavMenu from '@/components/nav-menus'
 import NavHeader from '@/components/nav-header'
 
 export default defineComponent({
+  name: 'mainContent',
   components: {
     NavMenu,
     NavHeader
   },
   setup() {
-    const isCollapse = ref(false)
+    const isCollapse = ref(true)
     const handleFoldChange = (isFold: boolean) => {
       isCollapse.value = isFold
     }

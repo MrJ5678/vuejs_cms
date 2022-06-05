@@ -13,8 +13,15 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/main',
+    name: 'main',
     component: () =>
       import(/* webpackChunkName: 'main'*/ '@/views/main/index.vue')
+    // children: [] => 根据 userMenus 决定的
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'not-found',
+    component: () => import('@/views/not-found/not-found.vue')
   }
 ]
 

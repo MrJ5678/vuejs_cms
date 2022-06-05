@@ -1,7 +1,7 @@
 <template>
   <!--  如果有孩子，就渲染成sub-menu（折叠item）-->
-  <template v-if="item.children && item.children.length > 0">
-    <el-sub-menu :index="item.url">
+  <template v-if="item.type === 1">
+    <el-sub-menu :index="item.id + ''">
       <template #title>
         <el-icon v-if="item.icon" :class="item.icon">
           <component :is="item.icon.substr(8)" />
@@ -13,7 +13,7 @@
   </template>
   <!--  否则就渲染成menu-item-->
   <template v-else>
-    <el-menu-item :index="item.url">
+    <el-menu-item :index="item.id + ''" @click="handleMenuItemClick(item)">
       <template #title>
         <el-icon v-if="item.icon" :class="item.icon">
           <component :is="item.icon.substr(8)" />
@@ -26,13 +26,21 @@
 
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
 import FoldItem from './fold-item.vue'
+
 defineProps({
   item: {
     type: Object,
     default: () => ({})
   }
 })
+const router = useRouter()
+const handleMenuItemClick = (item: any) => {
+  router.push({
+    path: item.url ?? '/not-found'
+  })
+}
 </script>
 
 <style lang="less" scoped>

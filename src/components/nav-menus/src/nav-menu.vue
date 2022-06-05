@@ -11,7 +11,6 @@
       background-color="#001529"
       text-color="#b7bdc3"
       active-text-color="#0a60bd"
-      router
     >
       <!-- 使用递归组件 -->
       <fold-item v-for="item in userMenus" :key="item.id" :item="item" />
